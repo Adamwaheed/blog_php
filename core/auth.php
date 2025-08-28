@@ -1,24 +1,38 @@
 <?php
 session_start();
+include 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /login.php');
-    exit;
-}
 
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
-// Simple authentication (in production, use hashed passwords)
-$valid_username = 'admin';
-$valid_password = 'password123';
-
-if ($username === $valid_username && $password === $valid_password) {
-    $_SESSION['auth'] = true;
-    $_SESSION['username'] = $username;
-    header('Location: /');
-} else {
-    header('Location: /login.php?error=1');
+if (empty($username) || empty($password)) {
+    header('Location: /login.php?error=empty_fields');
+    exit;
 }
+
+$stmt = $conn->prepare("SELECT id, username, password, role FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
+    
+    if (password_verify($password, $user['password'])) {
+        $_SESSION['auth'] = true;
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
+        header('Location: /');
+    } else {
+        header('Location: /login.php?error=invalid_credentials');
+    }
+} else {
+    header('Location: /login.php?error=invalid_credentials');
+}
+
+$stmt->close();
+$conn->close();
 exit;
 ?>

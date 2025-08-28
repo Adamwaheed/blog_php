@@ -26,7 +26,18 @@ if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
 
             <?php if (isset($_GET['error'])): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    Invalid username or password
+                    <?php
+                    switch ($_GET['error']) {
+                        case 'empty_fields':
+                            echo 'Please fill in all fields.';
+                            break;
+                        case 'invalid_credentials':
+                            echo 'Invalid username or password.';
+                            break;
+                        default:
+                            echo 'Login failed. Please try again.';
+                    }
+                    ?>
                 </div>
             <?php endif; ?>
 
