@@ -1,5 +1,8 @@
 <?php 
 require '../core/middleware.php';
+require '../core/db.php';
+
+$categories = $conn->query("SELECT * FROM categories ORDER BY name ASC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +22,12 @@ require '../core/middleware.php';
         </header>
 
         <div class="bg-white rounded-lg shadow-lg p-8">
+            <?php if (isset($_GET['success'])): ?>
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                    Article created successfully!
+                </div>
+            <?php endif; ?>
+
             <form action="../core/article-create.php" method="POST" class="space-y-6">
                 <div>
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Article Title</label>
@@ -27,7 +36,16 @@ require '../core/middleware.php';
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
-            
+                <div>
+                    <label for="category_id" class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                    <select id="category_id" name="category_id" required 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Select a category...</option>
+                        <?php while($category = $categories->fetch_assoc()): ?>
+                            <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
 
                 <div>
                     <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Article Content</label>

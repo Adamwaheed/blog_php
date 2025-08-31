@@ -21,6 +21,9 @@ session_start();
                         + Create New Article
                     </a>
                     <?php if(isset($_SESSION["role"]) && $_SESSION["role"] === 'admin') { ?>
+                        <a href="admin/categories.php" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 font-medium transition-colors">
+                            Manage Categories
+                        </a>
                         <a href="admin/user/users.php" class="inline-block bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 font-medium transition-colors">
                             Manage Users
                         </a>

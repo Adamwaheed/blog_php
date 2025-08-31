@@ -2,26 +2,21 @@
 require 'middleware.php';
 require 'db.php';
 
-$title = $_POST['title'];
-$content = $_POST['content'];
-$created_at =  date("Y-m-d");
+$title = trim($_POST['title']);
+$content = trim($_POST['content']);
+$category_id = !empty($_POST['category_id']) ? intval($_POST['category_id']) : null;
+$created_at = date("Y-m-d H:i:s");
 
-$sql = "INSERT INTO articles (title, content, created_at) 
-                     VALUES ('$title', '$content','$created_at')";
+$stmt = $conn->prepare("INSERT INTO articles (title, content, category_id, created_at) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssis", $title, $content, $category_id, $created_at);
 
-if ($conn->query($sql) === TRUE) {
-    // Redirect on success
-    header("Location: http://localhost:7090/admin/create-article.php?success=1");
+if ($stmt->execute()) {
+    header("Location: ../admin/create-article.php?success=1");
     exit();
 } else {
     echo "Error: " . $conn->error;
 }
 
+$stmt->close();
 $conn->close();
-
-
 ?>
-
-<h1><?= $title ?></h1>
-<h1><?= $content ?></h1>
-<h1><?= $created_at ?></h1>
