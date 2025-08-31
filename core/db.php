@@ -1,7 +1,7 @@
 <?php 
-$servername = "mysql"; // or "127.0.0.1"
+$servername = "localhost"; // or "127.0.0.1"
 $username   = "root";      // your database username
-$password   = "root";          // your database password
+$password   = "";          // your database password
 $database   = "blog";      // your database name
 
 // Create connection
