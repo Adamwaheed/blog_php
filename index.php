@@ -21,10 +21,10 @@ session_start();
                     <a href="<?= url('admin/create-article.php') ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-medium transition-colors">
                         + Create New Article
                     </a>
+                    <a href="<?= url('admin/categories.php') ?>" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 font-medium transition-colors">
+                        Manage Categories
+                    </a>
                     <?php if(isset($_SESSION["role"]) && $_SESSION["role"] === 'admin') { ?>
-                        <a href="<?= url('admin/categories.php') ?>" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 font-medium transition-colors">
-                            Manage Categories
-                        </a>
                         <a href="<?= url('admin/user/users.php') ?>" class="inline-block bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 font-medium transition-colors">
                             Manage Users
                         </a>
