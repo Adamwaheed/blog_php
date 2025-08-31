@@ -1,4 +1,5 @@
 <?php
+require '../../core/config.php';
 include '../../core/db.php';
 include '../../core/middleware.php';
 
@@ -23,8 +24,7 @@ if ($_POST) {
     }
     
     if ($conn->query($query)) {
-        header("Location: users.php");
-        exit;
+        redirect('admin/user/users.php');
     } else {
         $error = "Error updating user";
     }

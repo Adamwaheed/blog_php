@@ -1,4 +1,5 @@
 <?php 
+require '../core/config.php';
 require '../core/middleware.php';
 require '../core/db.php';
 
@@ -14,7 +15,7 @@ $categories = $conn->query("SELECT * FROM categories ORDER BY created_at DESC");
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
     <div class="max-w-6xl mx-auto px-4 py-8">
-        <a href="/" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Blog</a>
+        <a href="<?= url('') ?>" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Blog</a>
         
         <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-2">Manage Categories</h1>

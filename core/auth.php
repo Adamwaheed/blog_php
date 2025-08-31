@@ -1,4 +1,5 @@
 <?php
+require 'config.php';
 session_start();
 include 'db.php';
 
@@ -7,8 +8,7 @@ $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
 if (empty($username) || empty($password)) {
-    header('Location: /login.php?error=empty_fields');
-    exit;
+    redirect('login.php?error=empty_fields');
 }
 
 $stmt = $conn->prepare("SELECT id, username, password, role FROM users WHERE username = ?");
@@ -24,12 +24,12 @@ if ($result->num_rows === 1) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-        header('Location: /');
+        redirect('');
     } else {
-        header('Location: /login.php?error=invalid_credentials');
+        redirect('login.php?error=invalid_credentials');
     }
 } else {
-    header('Location: /login.php?error=invalid_credentials');
+    redirect('login.php?error=invalid_credentials');
 }
 
 $stmt->close();

@@ -1,4 +1,5 @@
 <?php
+require '../core/config.php';
 require '../core/middleware.php';
 require '../core/db.php';
 
@@ -9,8 +10,7 @@ $result = $conn->query($sql);
 $article = $result->fetch_assoc();
 
 if (!$article) {
-    header('Location: /');
-    exit;
+    redirect('');
 }
 ?>
 
@@ -24,7 +24,7 @@ if (!$article) {
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
     <div class="max-w-4xl mx-auto px-4 py-8">
-        <a href="/" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Blog</a>
+        <a href="<?= url('') ?>" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Blog</a>
         
         <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-2">Edit Article</h1>
@@ -53,7 +53,7 @@ if (!$article) {
                 <div class="flex gap-4">
                     <input type="submit" value="Update Article" 
                            class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer font-medium">
-                    <a href="/" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-md hover:bg-gray-400 font-medium text-center">
+                    <a href="<?= url('') ?>" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-md hover:bg-gray-400 font-medium text-center">
                         Cancel
                     </a>
                 </div>

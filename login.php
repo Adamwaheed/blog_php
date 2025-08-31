@@ -1,10 +1,10 @@
 <?php
+require 'core/config.php';
 session_start();
 
 // If already logged in, redirect to home
 if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
-    header('Location: /');
-    exit;
+    redirect('');
 }
 ?>
 
@@ -63,7 +63,7 @@ if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
             </form>
 
             <div class="mt-6 text-center">
-                <a href="/" class="text-blue-600 hover:text-blue-800 hover:underline">← Back to Blog</a>
+                <a href="<?= url('') ?>" class="text-blue-600 hover:text-blue-800 hover:underline">← Back to Blog</a>
             </div>
         </div>
     </div>

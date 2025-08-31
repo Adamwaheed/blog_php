@@ -1,4 +1,5 @@
 <?php
+require 'config.php';
 require 'middleware.php';
 require 'db.php';
 
@@ -12,7 +13,7 @@ $content = $_POST['content'];
 $sql = "UPDATE articles SET title = '$title', content = '$content' WHERE id = $id";
 
 if ($conn->query($sql) === TRUE) {
-    header('Location: /');
+    redirect('');
 } else {
     echo "Error updating article: " . $conn->error;
 }
