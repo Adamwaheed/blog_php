@@ -1,18 +1,17 @@
 <?php 
+require '../core/config.php';
 require '../core/middleware.php';
 require '../core/db.php';
 
 if (!isset($_GET['id'])) {
-    header("Location: categories.php");
-    exit();
+    redirect('admin/categories.php');
 }
 
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM categories WHERE id = $id");
 
 if ($result->num_rows == 0) {
-    header("Location: categories.php");
-    exit();
+    redirect('admin/categories.php');
 }
 
 $category = $result->fetch_assoc();
@@ -27,7 +26,7 @@ $category = $result->fetch_assoc();
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
     <div class="max-w-4xl mx-auto px-4 py-8">
-        <a href="/admin/categories.php" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Categories</a>
+        <a href="<?= url('admin/categories.php') ?>" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Categories</a>
         
         <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-2">Edit Category</h1>

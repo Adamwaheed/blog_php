@@ -9,6 +9,7 @@
 <body class="bg-gray-50 font-sans text-gray-800">
 
         <?php 
+            require 'core/config.php';
             require 'core/db.php';
 
             $id= $_GET['id'];
@@ -20,7 +21,7 @@
            
         ?>           
     <div class="max-w-4xl mx-auto px-4 py-8">
-        <a href="/" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Blog</a>
+        <a href="<?= url('') ?>" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Blog</a>
         <article class="bg-white rounded-lg shadow-lg p-8">
             <header class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900 mb-4"><?=$article['title']?></h1>
@@ -38,7 +39,7 @@
             </div>
             
             <nav class="mt-8 pt-8 border-t border-gray-200">
-                <a href="/" class="text-blue-600 hover:text-blue-800 hover:underline">← Back to All Posts</a>
+                <a href="<?= url('') ?>" class="text-blue-600 hover:text-blue-800 hover:underline">← Back to All Posts</a>
             </nav>
         </article>
     </div>

@@ -1,4 +1,5 @@
 <?php 
+require 'config.php';
 require 'middleware.php';
 require 'db.php';
 
@@ -11,8 +12,7 @@ $stmt = $conn->prepare("INSERT INTO articles (title, content, category_id, creat
 $stmt->bind_param("ssis", $title, $content, $category_id, $created_at);
 
 if ($stmt->execute()) {
-    header("Location: ../admin/create-article.php?success=1");
-    exit();
+    redirect('admin/create-article.php?success=1');
 } else {
     echo "Error: " . $conn->error;
 }

@@ -1,4 +1,5 @@
 <?php
+require 'core/config.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -17,23 +18,23 @@ session_start();
             
             <?php if(isset($_SESSION["auth"]) && $_SESSION["auth"]) { ?>
                 <div class="flex gap-4 justify-center items-center flex-wrap">
-                    <a href="admin/create-article.php" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-medium transition-colors">
+                    <a href="<?= url('admin/create-article.php') ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-medium transition-colors">
                         + Create New Article
                     </a>
                     <?php if(isset($_SESSION["role"]) && $_SESSION["role"] === 'admin') { ?>
-                        <a href="admin/categories.php" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 font-medium transition-colors">
+                        <a href="<?= url('admin/categories.php') ?>" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 font-medium transition-colors">
                             Manage Categories
                         </a>
-                        <a href="admin/user/users.php" class="inline-block bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 font-medium transition-colors">
+                        <a href="<?= url('admin/user/users.php') ?>" class="inline-block bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 font-medium transition-colors">
                             Manage Users
                         </a>
                     <?php } ?>
-                    <a href="core/logout.php" class="inline-block bg-gray-500 text-white px-6 py-3 rounded-md hover:bg-gray-600 font-medium transition-colors">
+                    <a href="<?= url('core/logout.php') ?>" class="inline-block bg-gray-500 text-white px-6 py-3 rounded-md hover:bg-gray-600 font-medium transition-colors">
                         Logout (<?php echo htmlspecialchars($_SESSION["username"]); ?>)
                     </a>
                 </div>
             <?php } else { ?>
-                <a href="login.php" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-medium transition-colors">
+                <a href="<?= url('login.php') ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-medium transition-colors">
                     Login
                 </a>
             <?php } ?>

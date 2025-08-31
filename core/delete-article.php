@@ -1,4 +1,5 @@
 <?php
+require 'config.php';
 require 'middleware.php';
 require 'db.php';
 
@@ -13,8 +14,7 @@ require 'db.php';
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
-        header("Location: http://localhost:7090");
-        exit(); // always exit after redirect
+        redirect('');
     } else {
         echo "Error deleting record: " . $conn->error;
     }

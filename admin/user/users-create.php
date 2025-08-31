@@ -1,4 +1,5 @@
 <?php
+require '../../core/config.php';
 include '../../core/db.php';
 include '../../core/middleware.php';
 
@@ -11,8 +12,7 @@ if ($_POST) {
     $query = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$password', '$role')";
     
     if ($conn->query($query)) {
-        header("Location: users.php");
-        exit;
+        redirect('admin/user/users.php');
     } else {
         $error = "Error creating user";
     }

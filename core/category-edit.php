@@ -1,4 +1,5 @@
 <?php 
+require 'config.php';
 require 'middleware.php';
 require 'db.php';
 
@@ -10,8 +11,7 @@ $stmt = $conn->prepare("UPDATE categories SET name = ?, description = ? WHERE id
 $stmt->bind_param("ssi", $name, $description, $id);
 
 if ($stmt->execute()) {
-    header("Location: ../admin/edit-category.php?id=$id&success=1");
-    exit();
+    redirect("admin/edit-category.php?id=$id&success=1");
 } else {
     echo "Error: " . $conn->error;
 }

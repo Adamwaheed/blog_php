@@ -1,4 +1,5 @@
 <?php 
+require '../core/config.php';
 require '../core/middleware.php';
 ?>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ require '../core/middleware.php';
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
     <div class="max-w-4xl mx-auto px-4 py-8">
-        <a href="/admin/categories.php" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Categories</a>
+        <a href="<?= url('admin/categories.php') ?>" class="inline-block text-blue-600 hover:text-blue-800 mb-8 hover:underline">← Back to Categories</a>
         
         <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-2">Create New Category</h1>

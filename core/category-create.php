@@ -1,4 +1,5 @@
 <?php 
+require 'config.php';
 require 'middleware.php';
 require 'db.php';
 
@@ -10,8 +11,7 @@ $stmt = $conn->prepare("INSERT INTO categories (name, description, created_at) V
 $stmt->bind_param("sss", $name, $description, $created_at);
 
 if ($stmt->execute()) {
-    header("Location: ../admin/create-category.php?success=1");
-    exit();
+    redirect('admin/create-category.php?success=1');
 } else {
     echo "Error: " . $conn->error;
 }

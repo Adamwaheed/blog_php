@@ -1,10 +1,10 @@
 <?php 
+require 'config.php';
 require 'middleware.php';
 require 'db.php';
 
 if (!isset($_GET['id'])) {
-    header("Location: ../admin/categories.php");
-    exit();
+    redirect('admin/categories.php');
 }
 
 $id = $_GET['id'];
@@ -13,8 +13,7 @@ $stmt = $conn->prepare("DELETE FROM categories WHERE id = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {
-    header("Location: ../admin/categories.php");
-    exit();
+    redirect('admin/categories.php');
 } else {
     echo "Error: " . $conn->error;
 }
